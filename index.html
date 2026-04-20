@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Planner | Notes & AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="page-hero">
+        <div class="hero-copy">
+          <span class="hero-pill">Student Productivity Lab</span>
+          <h1>Notes, tasks, tracking, and AI help in one sleek dashboard.</h1>
+          <p>
+            Capture study ideas, stay productive, compare your weekly habits, and ask the AI for instant note guidance.
+          </p>
+        </div>
+        <div class="hero-action">
+          <button class="button" type="button" onclick="document.getElementById('note-title').focus()">
+            Start a new note
+          </button>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="card card-large">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Quick Notes</p>
+              <h2>Capture ideas fast</h2>
+            </div>
+            <button class="button button-small" type="button" onclick="document.getElementById('note-title').focus()">
+              Add note
+            </button>
+          </div>
+
+          <form id="note-form" class="input-group">
+            <label for="note-title">Title</label>
+            <input id="note-title" type="text" placeholder="Lecture title, chapter, or idea" />
+
+            <label for="note-body">Notes</label>
+            <textarea id="note-body" placeholder="Write important points, formulas, or reminders..."></textarea>
+
+            <button class="button" type="submit">Save note</button>
+          </form>
+
+          <div id="notes-list" class="notes-list"></div>
+        </section>
+
+        <section class="card card-large">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">To-do Dashboard</p>
+              <h2>Stay on track</h2>
+            </div>
+            <button class="button button-small" type="button" onclick="document.getElementById('todo-input').focus()">
+              New task
+            </button>
+          </div>
+
+          <form id="todo-form" class="input-group">
+            <label for="todo-input">New task</label>
+            <input id="todo-input" type="text" placeholder="Review chapter 4, finish assignment, revise vocabulary" />
+            <button class="button" type="submit">Add task</button>
+          </form>
+
+          <div class="status-row status-row-compact">
+            <div>
+              <span class="status-label">Tasks</span>
+              <strong id="todo-count">0</strong>
+            </div>
+            <div>
+              <span class="status-label">Completed</span>
+              <strong id="todo-completed">0</strong>
+            </div>
+          </div>
+
+          <div id="todo-items" class="todo-list"></div>
+        </section>
+
+        <section class="card card-medium tracker-card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">Productivity Tracker</p>
+              <h2>Weekly study pulse</h2>
+            </div>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-card">
+              <span>Notes saved</span>
+              <strong id="metric-notes">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Tasks completed</span>
+              <strong id="metric-completed">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Focus score</span>
+              <strong id="metric-progress">0%</strong>
+            </div>
+          </div>
+
+          <div class="progress-block">
+            <div class="progress-label">
+              <span>Goal progress</span>
+              <strong id="goal-status">Start strong</strong>
+            </div>
+            <div class="progress-bar">
+              <div id="goal-fill" class="progress-fill"></div>
+            </div>
+          </div>
+
+          <div class="comparison-block">
+            <h3>Study comparison</h3>
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Current week</th>
+                  <th>Last week</th>
+                  <th>Change</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Math</td>
+                  <td>9 hrs</td>
+                  <td>7 hrs</td>
+                  <td class="positive">+2</td>
+                </tr>
+                <tr>
+                  <td>Science</td>
+                  <td>7 hrs</td>
+                  <td>8 hrs</td>
+                  <td class="negative">-1</td>
+                </tr>
+                <tr>
+                  <td>History</td>
+                  <td>6 hrs</td>
+                  <td>4 hrs</td>
+                  <td class="positive">+2</td>
+                </tr>
+                <tr>
+                  <td>Language</td>
+                  <td>5 hrs</td>
+                  <td>5 hrs</td>
+                  <td class="neutral">0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card card-medium ai-card">
+          <div class="card-header">
+            <div>
+              <p class="eyebrow">AI Study Assistant</p>
+              <h2>Ask for note help</h2>
+            </div>
+          </div>
+
+          <div id="ai-messages" class="chat-window">
+            <div class="chat-bubble bot">Hi! Ask me to summarize a chapter, create a study plan, or turn your ideas into notes.</div>
+          </div>
+
+          <form id="ai-form" class="chat-form">
+            <input id="ai-input" type="text" placeholder="Ask AI for help with study notes..." autocomplete="off" />
+            <button class="button button-small" type="submit">Ask AI</button>
+          </form>
+
+          <div class="chat-suggestions">
+            <button class="pill-button" type="button" data-prompt="Summarize chapter 5 of biology.">Summarize chapter</button>
+            <button class="pill-button" type="button" data-prompt="Create quiz questions for my math class.">Create quiz</button>
+            <button class="pill-button" type="button" data-prompt="Help me build a study plan for exams.">Study plan</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
